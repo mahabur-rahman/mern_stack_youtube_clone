@@ -60,6 +60,7 @@ export const googleAuth = async (req, res, next) => {
         .json(user._doc);
     } else {
       const newUser = new UserModel({ ...req.body, fromGoogle: true });
+
       const savedUser = await newUser.save();
 
       const token = jwt.sign({ id: savedUser._id }, process.env.JWT);
