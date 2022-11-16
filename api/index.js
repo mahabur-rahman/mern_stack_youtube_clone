@@ -2,6 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import colors from "colors";
+import cookieParser from "cookie-parser";
+
+// ROUTE
+import authRoute from "./routes/auth.route.js";
 
 const app = express();
 
@@ -20,6 +24,23 @@ const connect = () => {
       throw err;
     });
 };
+
+// middle wares
+app.use(cookieParser());
+app.use(express.json());
+app.use("/api/auth", authRoute);
+
+// ERROR HANDING
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  const message = err.message || "Something went wrong!";
+
+  return res.status(status).json({
+    success: false,
+    status,
+    message,
+  });
+});
 
 // listen app
 app.listen(PORT, () => {
