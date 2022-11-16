@@ -1,7 +1,11 @@
 import express from "express";
 const router = express.Router();
 import { verifyToken } from "../verifyToken.js";
-import { updateUser, deleteUser } from "../controllers/user.controller.js";
+import {
+  updateUser,
+  deleteUser,
+  getUser,
+} from "../controllers/user.controller.js";
 
 // ###############
 
@@ -22,6 +26,8 @@ router.put("/:id", verifyToken, updateUser);
 router.delete("/:id", verifyToken, deleteUser);
 
 // GET A USER
+router.get("/find/:id", getUser);
+
 // SUBSCRIBE
 // UNSUBSCRIBE
 // LIKE A VIDEO
