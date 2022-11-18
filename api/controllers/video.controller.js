@@ -55,3 +55,27 @@ export const deleteVideo = async (req, res, next) => {
     next(err);
   }
 };
+
+// GET SINGLE VIDEO
+export const getSingleVideo = async (req, res, next) => {
+  try {
+    const video = await VideoModel.findById(req.params.id);
+
+    return res.status(200).json(video);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// INCREMENT VIEW
+export const addView = async (req, res, next) => {
+  try {
+    await VideoModel.findByIdAndUpdate(req.params.id, {
+      $inc: { views: 1 },
+    });
+
+    return res.status(200).json("The view has been increased...");
+  } catch (err) {
+    next(err);
+  }
+};

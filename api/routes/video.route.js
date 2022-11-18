@@ -4,6 +4,8 @@ import {
   createVideo,
   updateVideo,
   deleteVideo,
+  getSingleVideo,
+  addView,
 } from "../controllers/video.controller.js";
 import { verifyToken } from "../verifyToken.js";
 
@@ -30,6 +32,12 @@ router.put("/:id", verifyToken, updateVideo);
 
 // DELETE VIDEO
 router.delete("/:id", verifyToken, deleteVideo);
+
+// GET SINGLE VIDEO
+router.get("/find/:id", getSingleVideo);
+
+// INCREMENT VIEW
+router.put("/view/:id", addView);
 
 // export
 export default router;
