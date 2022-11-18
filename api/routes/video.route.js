@@ -7,6 +7,7 @@ import {
   getSingleVideo,
   addView,
   trendVideo,
+  randomVideo,
 } from "../controllers/video.controller.js";
 import { verifyToken } from "../verifyToken.js";
 
@@ -42,6 +43,9 @@ router.put("/view/:id", addView);
 
 // TREND VIDEO
 router.get("/trend", trendVideo);
+
+// TREND VIDEO
+router.get("/random", randomVideo);
 
 // export
 export default router;

@@ -91,3 +91,14 @@ export const trendVideo = async (req, res, next) => {
     next(err);
   }
 };
+
+// GET RANDOM VIDEO
+export const randomVideo = async (req, res, next) => {
+  try {
+    const videos = await VideoModel.aggregate([{ $sample: { size: 40 } }]);
+
+    return res.status(200).json(videos);
+  } catch (err) {
+    next(err);
+  }
+};
