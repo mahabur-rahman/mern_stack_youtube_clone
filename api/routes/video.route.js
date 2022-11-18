@@ -6,6 +6,7 @@ import {
   deleteVideo,
   getSingleVideo,
   addView,
+  trendVideo,
 } from "../controllers/video.controller.js";
 import { verifyToken } from "../verifyToken.js";
 
@@ -38,6 +39,9 @@ router.get("/find/:id", getSingleVideo);
 
 // INCREMENT VIEW
 router.put("/view/:id", addView);
+
+// TREND VIDEO
+router.get("/trend", trendVideo);
 
 // export
 export default router;

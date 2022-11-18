@@ -79,3 +79,15 @@ export const addView = async (req, res, next) => {
     next(err);
   }
 };
+
+// GET TREND VIDEO
+
+export const trendVideo = async (req, res, next) => {
+  try {
+    const videos = await VideoModel.find().sort({ views: -1 });
+
+    return res.status(200).json(videos);
+  } catch (err) {
+    next(err);
+  }
+};
