@@ -1,0 +1,35 @@
+import express from "express";
+const router = express.Router();
+import {
+  createVideo,
+  updateVideo,
+  deleteVideo,
+} from "../controllers/video.controller.js";
+import { verifyToken } from "../verifyToken.js";
+
+// ##################
+
+// CREATE VIDEO
+// UPDATE VIDEO
+// DELETE VIDEO
+// GET SINGLE VIDEO
+// ADD VIEW
+// TREND
+// RANDOM
+// SUB
+// GET BY TAG
+// SEARCH
+
+// ##################
+
+// CREATE VIDEO
+router.post("/", verifyToken, createVideo);
+
+// UPDATE VIDEO
+router.put("/:id", verifyToken, updateVideo);
+
+// DELETE VIDEO
+router.delete("/:id", verifyToken, deleteVideo);
+
+// export
+export default router;
