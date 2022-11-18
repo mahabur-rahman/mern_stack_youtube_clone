@@ -5,6 +5,8 @@ import {
   updateUser,
   deleteUser,
   getUser,
+  subscribeUser,
+  unSubscribeUser,
 } from "../controllers/user.controller.js";
 
 // ###############
@@ -29,7 +31,11 @@ router.delete("/:id", verifyToken, deleteUser);
 router.get("/find/:id", getUser);
 
 // SUBSCRIBE
+router.put("/sub/:id", verifyToken, subscribeUser);
+
 // UNSUBSCRIBE
+router.put("/unsub/:id", verifyToken, unSubscribeUser);
+
 // LIKE A VIDEO
 // DISLIKE A VIDEO
 

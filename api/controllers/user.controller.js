@@ -47,3 +47,39 @@ export const getUser = async (req, res, next) => {
     next(err);
   }
 };
+
+// SUBSCRIBE A USER
+export const subscribeUser = async (req, res, next) => {
+  try {
+    await UserModel.findByIdAndUpdate(req.user.id, {
+      // channel id
+      $push: { subscribedUsers: req.params.id },
+    });
+
+    await UserModel.findByIdAndUpdate(req.params.id, {
+      $inc: { subscribers: 1 },
+    });
+
+    return res.status(200).json("Subscription successful!");
+  } catch (err) {
+    next(err);
+  }
+};
+
+// UNSUBSCRIBE USER
+export const unSubscribeUser = async (req, res, next) => {
+  try {
+    await UserModel.findByIdAndUpdate(req.user.id, {
+      // remove channel id
+      $pull: { subscribedUsers: req.params.id },
+    });
+
+    await UserModel.findByIdAndUpdate(req.params.id, {
+      $inc: { subscribers: -1 },
+    });
+
+    return res.status(200).json("Unsubscribe successful!");
+  } catch (err) {
+    next(err);
+  }
+};
