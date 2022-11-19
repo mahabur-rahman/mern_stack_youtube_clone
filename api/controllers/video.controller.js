@@ -132,6 +132,7 @@ export const getByTag = async (req, res, next) => {
 
   try {
     const videos = await VideoModel.find({ tags: { $in: tags } }).limit(20);
+    // http://localhost:4000/api/videos/tags?tags=c,js,tech
 
     return res.status(200).json(videos);
   } catch (err) {
@@ -141,10 +142,10 @@ export const getByTag = async (req, res, next) => {
 
 // SEARCH WITH QUERY || title
 export const search = async (req, res, next) => {
-  const query = req.query.q;
+  const query = req.query.q; // http://localhost:4000/api/videos/search?q=tech
   try {
     const videos = await VideoModel.find({
-      title: { $regex: query, $options: "i" }, //  capital / small letter don't face like that 👍
+      title: { $regex: query, $options: "i" }, //  capital / small letter don't fact like that 👍
     }).limit(40);
 
     return res.status(200).json(videos);
