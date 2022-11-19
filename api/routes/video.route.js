@@ -10,6 +10,7 @@ import {
   randomVideo,
   sub,
   getByTag,
+  search,
 } from "../controllers/video.controller.js";
 import { verifyToken } from "../verifyToken.js";
 
@@ -54,6 +55,9 @@ router.get("/sub", verifyToken, sub);
 
 // GET BY TAGS USING QUERY
 router.get("/tags", getByTag);
+
+// SEARCH WITH QUERY || title
+router.get("/search", search);
 
 // export
 export default router;

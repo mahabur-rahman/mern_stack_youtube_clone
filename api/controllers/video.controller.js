@@ -138,3 +138,17 @@ export const getByTag = async (req, res, next) => {
     next(err);
   }
 };
+
+// SEARCH WITH QUERY || title
+export const search = async (req, res, next) => {
+  const query = req.query.q;
+  try {
+    const videos = await VideoModel.find({
+      title: { $regex: query, $options: "i" }, //  capital / small letter don't face like that 👍
+    }).limit(40);
+
+    return res.status(200).json(videos);
+  } catch (err) {
+    next(err);
+  }
+};
