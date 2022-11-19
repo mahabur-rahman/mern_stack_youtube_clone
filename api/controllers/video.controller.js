@@ -102,3 +102,39 @@ export const randomVideo = async (req, res, next) => {
     next(err);
   }
 };
+
+// SUBSCRIBE VIDEOS
+export const sub = async (req, res, next) => {
+  try {
+    const user = await UserModel.findById(req.user.id);
+
+    const subscribedChannels = user.subscribedUsers;
+
+    const list = await Promise.all(
+      subscribedChannels.map(async (channelId) => {
+        return await VideoModel.find({ userId: channelId });
+      })
+    );
+
+    return res
+      .status(200)
+      .json(list.flat().sort((a, b) => b.createdAt - a.createdAt));
+  } catch (err) {
+    next(err);
+  }
+};
+
+// GET BY TAGS
+export const getByTag = async (req, res, next) => {
+  const tags = req.query.tags.split(",");
+
+  //   console.log(tags);
+
+  try {
+    const videos = await VideoModel.find({ tags: { $in: tags } }).limit(20);
+
+    return res.status(200).json(videos);
+  } catch (err) {
+    next(err);
+  }
+};

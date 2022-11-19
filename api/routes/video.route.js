@@ -8,6 +8,8 @@ import {
   addView,
   trendVideo,
   randomVideo,
+  sub,
+  getByTag,
 } from "../controllers/video.controller.js";
 import { verifyToken } from "../verifyToken.js";
 
@@ -46,6 +48,12 @@ router.get("/trend", trendVideo);
 
 // TREND VIDEO
 router.get("/random", randomVideo);
+
+// SUBSCRIBE all VIDEOS or channels
+router.get("/sub", verifyToken, sub);
+
+// GET BY TAGS USING QUERY
+router.get("/tags", getByTag);
 
 // export
 export default router;

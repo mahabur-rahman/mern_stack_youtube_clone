@@ -30,10 +30,10 @@ router.delete("/:id", verifyToken, deleteUser);
 // GET A USER
 router.get("/find/:id", getUser);
 
-// SUBSCRIBE
+// SUBSCRIBE CHANNEL
 router.put("/sub/:id", verifyToken, subscribeUser);
 
-// UNSUBSCRIBE
+// UNSUBSCRIBE CHANNEL
 router.put("/unsub/:id", verifyToken, unSubscribeUser);
 
 // LIKE A VIDEO
