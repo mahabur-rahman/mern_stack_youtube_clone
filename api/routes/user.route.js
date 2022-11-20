@@ -7,6 +7,8 @@ import {
   getUser,
   subscribeUser,
   unSubscribeUser,
+  likeVideo,
+  disLikeVideo,
 } from "../controllers/user.controller.js";
 
 // ###############
@@ -37,7 +39,10 @@ router.put("/sub/:id", verifyToken, subscribeUser);
 router.put("/unsub/:id", verifyToken, unSubscribeUser);
 
 // LIKE A VIDEO
+router.put("/like/:videoId", verifyToken, likeVideo); // http://localhost:4000/api/users/like/6377b0bf6db61f5e276303ff
+
 // DISLIKE A VIDEO
+router.put("/dislike/:videoId", verifyToken, disLikeVideo); // http://localhost:4000/api/users/dislike/6377b0bf6db61f5e276303ff
 
 // export
 
