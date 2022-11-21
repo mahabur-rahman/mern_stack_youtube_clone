@@ -34,10 +34,10 @@ function App() {
               <Routes>
                 <Route path="/">
                   <Route index element={<Home type="random" />} />
-                  <Route path="trends" element={<Home type="trends" />} />
+                  <Route path="trends" element={<Home type="trend" />} />
                   <Route
                     path="subscriptions"
-                    element={<Home type="subscriptions" />}
+                    element={<Home type="subscription" />}
                   />
                   <Route path="signin" element={<SignIn />} />
                   <Route path="video">
