@@ -65,7 +65,6 @@ const Card = ({ type, video }) => {
     getChannelInfo();
   }, [video.userId]);
 
-  console.log(video);
 
   return (
     <Link to="/video/test" style={{ textDecoration: "none" }}>
