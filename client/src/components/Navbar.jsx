@@ -94,6 +94,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // logout user
   const handleLogout = () => {
     dispatch(logout());
 
