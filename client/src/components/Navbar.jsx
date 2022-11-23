@@ -117,7 +117,7 @@ const Navbar = () => {
               <span>{currentUser.name}</span>
             </User>
 
-            <ButtonMain onClick={handleLogout}>Logout</ButtonMain>
+            <ButtonMain onClick={handleLogout}> Logout</ButtonMain>
           </>
         ) : (
           <Link to="signin" style={{ textDecoration: "none" }}>
