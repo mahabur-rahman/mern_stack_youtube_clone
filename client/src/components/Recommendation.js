@@ -17,7 +17,6 @@ function Recommendation({ tags }) {
       const res = await axios.get(`/videos/tags?tags=${tags}`);
 
       setVideos(res.data);
-      console.log("recommendation: ", res.data);
     };
 
     fetchVideos();

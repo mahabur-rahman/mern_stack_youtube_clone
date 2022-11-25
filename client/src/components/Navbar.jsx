@@ -91,6 +91,8 @@ const ButtonMain = styled.button`
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  // for searching
+  const [q, setQ] = useState("");
 
   const { currentUser } = useSelector((state) => state.user);
 
@@ -109,8 +111,11 @@ const Navbar = () => {
       <Container>
         <Wrapper>
           <Search>
-            <Input placeholder="Search" />
-            <SearchOutlinedIcon />
+            <Input
+              placeholder="Search"
+              onChange={(e) => setQ(e.target.value)}
+            />
+            <SearchOutlinedIcon onClick={() => navigate(`/search?q=${q}`)} />
           </Search>
 
           {currentUser ? (
