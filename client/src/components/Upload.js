@@ -108,9 +108,11 @@ function Upload({ setOpen }) {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
         urlType === "imgUrl"
           ? setImgPerc(Math.round(progress))
           : setVideoPerc(Math.round(progress));
+
         switch (snapshot.state) {
           case "paused":
             console.log("Upload is paused");
