@@ -13,6 +13,7 @@ import { like, dislike, fetchSuccess } from "../redux/videoSlice";
 import { format } from "timeago.js";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import { subscription } from "../redux/userSlice";
 
 const Container = styled.div`
   display: flex;
@@ -142,20 +143,31 @@ const Video = () => {
     fetchData();
   }, [path, dispatch]);
 
-  // like
+  // like 👍
+
   const handleLike = async () => {
     await axios.put(`/users/like/${currentVideo._id}`);
 
     dispatch(like(currentUser._id));
   };
 
-  // dislike
+  // dislike 👎
+
   const handleDislike = async () => {
     await axios.put(`/users/dislike/${currentVideo._id}`);
 
     dispatch(dislike(currentUser._id));
   };
 
+  // subscribe ❤️
+
+  const handleSub = async () => {
+    currentUser.subscribedUsers.includes(channel._id)
+      ? await axios.put(`/users/sub/${channel._id}`)
+      : await axios.put(`/users/unsub/${channel._id}`);
+
+    dispatch(subscription(channel._id));
+  };
   return (
     <Container>
       <Content>
@@ -216,7 +228,12 @@ const Video = () => {
               <Description>{currentVideo?.desc}</Description>
             </ChannelDetail>
           </ChannelInfo>
-          <Subscribe>SUBSCRIBE</Subscribe>
+
+          <Subscribe onClick={handleSub}>
+            {currentUser.subscribedUsers?.includes(channel._id)
+              ? "SUBSCRIBED"
+              : "SUBSCRIBE"}
+          </Subscribe>
         </Channel>
         <Hr />
 
